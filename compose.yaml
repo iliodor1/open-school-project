@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  tomcat:
+    image: tomcat:9.0.85
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./target/open-school-project-0.0.1.war:/usr/local/tomcat/webapps/ROOT.war
+    restart: on-failure
