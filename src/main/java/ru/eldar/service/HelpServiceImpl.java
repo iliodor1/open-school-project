@@ -3,26 +3,20 @@ package ru.eldar.service;
 import java.util.List;
 import java.util.Random;
 import ru.eldar.dao.HelpMessageDao;
-import ru.eldar.dao.HelpMessageMemoryDao;
 
 public class HelpServiceImpl implements HelpService {
-    private static HelpService instance;
 
-    private final HelpMessageDao helpMessageDao = HelpMessageMemoryDao.getInstance();
-
-    private static final String DEFAULT_MESSAGE = "You are amazing and you know it!";
+    private final HelpMessageDao helpMessageDao;
 
     private final Random rnd = new Random();
 
-    private HelpServiceImpl() {
+    private static final String DEFAULT_MESSAGE = "You are amazing and you know it!";
+
+
+    public HelpServiceImpl(HelpMessageDao helpMessageDao) {
+        this.helpMessageDao = helpMessageDao;
     }
 
-    public static HelpService getInstance() {
-        if (instance == null) {
-            instance = new HelpServiceImpl();
-        }
-        return instance;
-    }
 
     @Override
     public void addSupportMessage(String message) {
