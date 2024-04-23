@@ -1,6 +1,8 @@
 package ru.eldar.service;
 
 
+import ru.eldar.annotation.Logging;
+
 /**
  * The interface HelpService.
  */
@@ -11,6 +13,10 @@ public interface HelpService {
      *
      * @param message new support message
      */
+    @Logging(
+            before = "Received a request to add a support message",
+            after = "The request to add a message was processed successfully"
+    )
     void addSupportMessage(String message);
 
     /**
@@ -18,5 +24,9 @@ public interface HelpService {
      *
      * @return a support message
      */
+    @Logging(
+            before = "Received a request to get a support message",
+            after = "The request to get a message was processed successfully"
+    )
     String getSupportMessage();
 }

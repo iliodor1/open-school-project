@@ -6,10 +6,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,14 +22,6 @@ class HelpServiceImplTest {
 
     @Mock
     HelpMessageDao helpMessageDao;
-
-    @BeforeEach
-    void init() throws Exception {
-        Class<?> mockServiceClass = Class.forName("ru.eldar.service.HelpServiceImpl");
-        Field field = mockServiceClass.getDeclaredField("helpMessageDao");
-        field.setAccessible(true);
-        field.set(service, helpMessageDao);
-    }
 
     @Test
     void addSupportMessage() {
